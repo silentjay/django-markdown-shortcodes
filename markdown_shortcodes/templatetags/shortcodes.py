@@ -7,5 +7,5 @@ register = template.Library()
 
 @register.filter
 @stringfilter
-def expand_shortcodes(val):
-    return expand_shortcodes_func(val)
+def expand_shortcodes(val, extra_var=None):
+    return expand_shortcodes_func(val, extra_var)
