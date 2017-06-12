@@ -35,7 +35,7 @@ def shortcode_vimeo(*args):
     })
 
 
-def expand_shortcodes(document):
+def expand_shortcodes(document, extra_var):
     
     matches = re.findall(SHORTCODE_REGEX, document)
     for result in matches:
@@ -45,7 +45,7 @@ def expand_shortcodes(document):
         parameters_match = re.findall(SHORTCODE_PARAMETER_REGEX, result[2])
         flattened_params = list(itertools.chain(*parameters_match))
         parameters = [item for item in flattened_params if item != '']
-        
+        parameters.append(extra_var)
         # If we have a method defined for the shortcode, call it.
         # Otherwise, ignore the shortcode string and move on.
         shortcode_method = shortcodes.get(method_name, None)
